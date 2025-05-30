@@ -66,7 +66,6 @@ const accHistory = async (req, res) => {
 
     let output = "Sent To:\n\n";
 
-    if (user_x.moneysent && user_x.moneysent.length > 0) {
       for (const details of user_x.moneysent) {
         if (details.sentTo && details.sentTo.name) {
           output += `${details.sentTo.name} ($${details.money})\n`
@@ -74,19 +73,19 @@ const accHistory = async (req, res) => {
           output += `Unknown recipient ($${details.money})\n`
         }
       }
-    }
-
+    
     output += "\n\nReceived Money From:\n\n";
 
-    if (user_x.moneyreceived && user_x.moneyreceived.length > 0) {
+    
       for (const details of user_x.moneyreceived) {
+        
         if (details.sentBy && details.sentBy.name) {
           output += `${details.sentBy.name} ($${details.money})\n`
         } else {
           output += `Unknown sender ($${details.money})\n`
         }
       }
-    }
+    
     
     return res.send(output);
   } catch (err) {
