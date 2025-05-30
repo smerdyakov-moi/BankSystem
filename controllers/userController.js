@@ -1,5 +1,6 @@
 const { response } = require('express')
 const userModel = require ('../models/userModel')
+const deletedUser = require ('../models/deletedUser')
 
 const sendMoney = async (req,res)=>{
     const {accountNumber,balance} = req.body
@@ -78,6 +79,16 @@ const accHistory = async(req,res)=>{
     return res.send(output)
 }
 
+const closeAcc = async(req,res)=>{
+    let deleted_user = await userModel.findOneAndDelete({email:req.user.email})
+    const {name,email,password,accountNumber,balance} = deleted_user
+    await deletedUser.create({
+        name,email,password,accountNumber,balance
+    })
+
+    return res.send("The account has been closed.")
+}
+
 module.exports ={
-    sendMoney,depositMoney,withdrawMoney,accDetails,accHistory
+    sendMoney,depositMoney,withdrawMoney,accDetails,accHistory,closeAcc
 }

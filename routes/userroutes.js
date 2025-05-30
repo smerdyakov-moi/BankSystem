@@ -4,7 +4,7 @@ const router = express.Router()
 const {
     sendMoney,depositMoney,
     withdrawMoney,
-    accDetails,accHistory
+    accDetails,accHistory,closeAcc
 } = require ('../controllers/userController')
 
 const {isLoggedin} = require ('../middlewares/authMiddleware')
@@ -15,5 +15,7 @@ router.patch('/withdrawmoney',isLoggedin,withdrawMoney)
 
 router.get('/mydetails',isLoggedin,accDetails)
 router.get ('/acchistory', isLoggedin,accHistory)
+
+router.delete ('/closeacc', isLoggedin, accHistory)
 
 module.exports = router
