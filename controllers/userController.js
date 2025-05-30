@@ -87,7 +87,7 @@ const accHistory = async (req, res) => {
         }
       }
     }
-
+    
     return res.send(output);
   } catch (err) {
     console.error("Account history error:", err)
