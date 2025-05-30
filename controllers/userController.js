@@ -57,27 +57,45 @@ const accDetails = async(req,res)=>{
     res.send(`Name: ${user_x.name}\n Email: ${user_x.email}\n Account: ${user_x.accountNumber}\n Balance: $ ${user_x.balance}`)
 }
 
-const accHistory = async(req,res)=>{
-    let user_x = await userModel.findOne({email:req.user.email}).populate('moneysent.sentTo').populate('moneyreceived.sentBy')
-    
-    output="Sent To:\n\n"
+const accHistory = async (req, res) => {
+  try {
+    const user_x = await userModel
+      .findOne({ email: req.user.email })
+      .populate('moneysent.sentTo')
+      .populate('moneyreceived.sentBy')
 
-    if(user_x.moneysent.length>0){
-    user_x.moneysent.forEach((details)=>{
-        output=output+String(details.sentTo.name)+"($ "+String(details.money)+")"+"\n"
-        
-    })}
+    let output = "Sent To:\n\n";
 
-    output+="\n\n"
-    output+="Received Money From:\n\n"
+    if (user_x.moneysent && user_x.moneysent.length > 0) {
+      for (const details of user_x.moneysent) {
+        if (details.sentTo && details.sentTo.name) {
+          output += `${details.sentTo.name} ($${details.money})\n`
+        } else {
+          output += `Unknown recipient ($${details.money})\n`
+        }
+      }
+    }
 
-    if(user_x.moneyreceived.length>0){
-    user_x.moneyreceived.forEach((details)=>{
-        output=output+String(details.sentBy.name)+"($ "+String(details.money)+")" + "\n"
-    })}
+    output += "\n\nReceived Money From:\n\n";
 
-    return res.send(output)
+    if (user_x.moneyreceived && user_x.moneyreceived.length > 0) {
+      for (const details of user_x.moneyreceived) {
+        if (details.sentBy && details.sentBy.name) {
+          output += `${details.sentBy.name} ($${details.money})\n`
+        } else {
+          output += `Unknown sender ($${details.money})\n`
+        }
+      }
+    }
+
+    return res.send(output);
+  } catch (err) {
+    console.error("Account history error:", err)
+    return res.status(500).send("Error generating account history")
+  }
 }
+//Logic for when closing account, still be able to see history of user that interacted with that user
+
 
 const closeAcc = async(req,res)=>{
     let deleted_user = await userModel.findOneAndDelete({email:req.user.email})
