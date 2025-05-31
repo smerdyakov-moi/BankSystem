@@ -113,9 +113,9 @@ const recoverAcc = async (req,res)=>{ //Recovering Account
     if(! await deletedUser.findOne({email})){return res.send("Does not exist!!")}
 
     user = await deletedUser.findOne({email})
-    await deletedUser.findOneAndDelete({email})
     const result = await bcrypt.compare(password, user.password)
-    if(!result){return res.send.json("Incorrect creds!")}
+    if(!result){return res.send("Incorrect creds!")}
+    await deletedUser.findOneAndDelete({email})
 
     //return res.send(user)
     await userModel.create({_id:user._id,name:user.name,email:user.email,password:user.password,accountNumber:user.accountNumber,balance:user.balance,moneysent:user.moneysent,moneyreceived:user.moneyreceived})
