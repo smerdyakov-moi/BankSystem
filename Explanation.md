@@ -33,4 +33,5 @@ Middlewares use Tokens, bcrypt, cookie for protecting routes!!!
 
 <Forself: Referring to a model means getting access to all the data from that model. Thus, when that collection is dropped. We need to check like:
 if (details.sentTo && details.sentTo.name)
-also the details.sentTo.name or sentBy.name is unnecessary as checking whether the id exists in the database is enough)
+also the details.sentTo.name or sentBy.name is unnecessary as checking whether the id exists in the database is enough>
+
