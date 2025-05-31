@@ -1,6 +1,7 @@
 const { response } = require('express')
 const userModel = require ('../models/userModel')
 const deletedUser = require ('../models/deletedUser')
+const bcrypt = require ('bcrypt')
 
 const sendMoney = async (req,res)=>{
     const {accountNumber,balance} = req.body
@@ -98,14 +99,29 @@ const accHistory = async (req, res) => {
 
 const closeAcc = async(req,res)=>{
     let deleted_user = await userModel.findOneAndDelete({email:req.user.email})
-    const {name,email,password,accountNumber,balance} = deleted_user
+    const {name,email,password,accountNumber,balance,moneysent,moneyreceived,_id} = deleted_user
     await deletedUser.create({
-        name,email,password,accountNumber,balance
+        name,email,password,accountNumber,balance,moneysent,moneyreceived,_id
     })
 
     return res.send("The account has been closed.")
 }
 
+const recoverAcc = async (req,res)=>{ //Recovering Account
+    const {email,password} = req.body
+    if(await userModel.findOne({email})){return res.send("Account has not been closed")}
+    if(! await deletedUser.findOne({email})){return res.send("Does not exist!!")}
+
+    user = await deletedUser.findOne({email})
+    await deletedUser.findOneAndDelete({email})
+    const result = await bcrypt.compare(password, user.password)
+    if(!result){return res.send.json("Incorrect creds!")}
+
+    //return res.send(user)
+    await userModel.create({_id:user._id,name:user.name,email:user.email,password:user.password,accountNumber:user.accountNumber,balance:user.balance,moneysent:user.moneysent,moneyreceived:user.moneyreceived})
+    res.send("Your account has been successfully restored. You can proceed to login!!")
+  }
+
 module.exports ={
-    sendMoney,depositMoney,withdrawMoney,accDetails,accHistory,closeAcc
+    sendMoney,depositMoney,withdrawMoney,accDetails,accHistory,closeAcc,recoverAcc
 }
