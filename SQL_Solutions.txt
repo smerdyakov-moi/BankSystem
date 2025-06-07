@@ -1,0 +1,20 @@
+select customerName,concat(employees.firstName," ",employees.lastName) as ReferredTo from  customers  join employees on customers.salesRepEmployeeNumber=employees.employeeNumber 
+
+select customers.customerNumber,customers.customerName,sum(amount) as TotalPayments from payments join customers on payments.customerNumber = customers.customerNumber where customerName="Atelier graphique" group by customers.customerName,customers.customerNumber ;
+
+select paymentDate, sum(amount) as PaymentintheDate from payments group by paymentDate;
+
+select * from products left join orderdetails on orderdetails.productCode=products.productCode where orderdetails.productCode is NULL;
+
+select payments.customerNumber,sum(amount) as TotalAmount,customers.customerName  from payments  join customers on customers.customerNumber = payments.customerNumber group by payments.customerNumber,customers.customerName order by TotalAmount desc;
+
+select count(*) from orders where customerNumber=167;
+
+select concat(employees.firstName," ",employees.lastName) as Name from employees left join offices on offices.officeCode = employees.officeCode where offices.state='Boston';
+
+select * from payments where amount>100000 order by amount desc;
+
+select orders.orderNumber ,sum(orderdetails.quantityOrdered*orderdetails.priceEach) as VALUE from orders join orderdetails on orderdetails.orderNumber=orders.orderNumber where orders.status='On Hold' group by orders.orderNumber order by VALUE desc ; (Covers 9 &10)
+
+SELECT orders.orderDate,products.productCode,products.productName,orderdetails.quantityOrdered
+FROM orders JOIN orderdetails  ON orders.orderNumber = orderdetails.orderNumber JOIN products  ON orderdetails.productCode =products.productCode ORDER BY orders.orderDate, products.productCode;
