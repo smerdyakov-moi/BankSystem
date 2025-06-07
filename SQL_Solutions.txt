@@ -18,3 +18,7 @@ select orders.orderNumber ,sum(orderdetails.quantityOrdered*orderdetails.priceEa
 
 SELECT orders.orderDate,products.productCode,products.productName,orderdetails.quantityOrdered
 FROM orders JOIN orderdetails  ON orders.orderNumber = orderdetails.orderNumber JOIN products  ON orderdetails.productCode =products.productCode ORDER BY orders.orderDate, products.productCode;
+
+SELECT orders.orderDate,products.productCode,products.productName,orderdetails.quantityOrdered
+FROM orders JOIN orderdetails  ON orders.orderNumber = orderdetails.orderNumber JOIN products  ON orderdetails.productCode =products.productCode WHERE products.productName = '' ORDER BY orders.orderDate, products.productCode;
+
