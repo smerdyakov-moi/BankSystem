@@ -1,0 +1,36 @@
+4. select distinct `customer`.name from `order` join `customer` on customer.customer_id = `order`.customer_id where `order`.order_date>'2025-01-01';
+
+5. select name from customer where customer_id not in (select customer_id from `order`);
+
+6. select `order_date`,`customer`.name from `order` join `customer` on customer.customer_id = `order`.customer_id order by `order_date` desc ;
+
+//the above answers should be renamed to orders and no escape characters should be used.
+
+7. select customer_name,orders.order_id,orders.total_price from customer join  orders on customer.customer_id = orders.customer_id;
+
+8.select customer_name from customer join  orders on customer.customer_id = orders.customer_id order by orders.total_price desc limit 1
+
+9.select customer.customer_name,customer.customer_id,count(*) as Orders, sum(total_price) as TotalSum from orders join customer on customer.customer_id = orders.customer_id group by customer_id order by Orders desc;
+
+10. update orders  join customer on customer.customer_id = orders.customer_id set orders.total_price=orders.total_price+0.1*orders.total_price where customer.country = 'Nepal';
+
+11. select * from customer where customer_id not in (select customer_id from orders);
+
+12. select customer.customer_name,order_date,total_price from orders join customer on customer.customer_id = orders.customer_id order by order_date desc;
+
+13. update orders set orders.total_price=0 where orders.order_date<'2025-01-01';
+
+14. delete from customer where customer_id not in (select customer_id from orders);
+
+15. update orders  join customer on customer.customer_id = orders.customer_id set orders.total_price=orders.total_price+0.15*orders.total_price where customer.country = 'India';
+
+16. delete from orders where order_date<'2023-01-01' ;
+delete from customer where customer_id not in (select customer_id from orders) 
+
+17. update orders set total_price = 0 where customer_id=3
+
+18. select distinct customer.customer_name,customer.phone_number,customer.address,customer.country from orders join customer on orders.customer_id = customer.customer_id where payment_method = 'Cash'
+
+19. // didn't insert `email`, updating the phone number
+	update customer set phone_number = '7189347198'  where phone_number = '1234567890';
+	update orders set total_price = 5000 where customer_id = {select customer_id from customer where phone_number='7189347198}
