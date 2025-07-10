@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from "../api/axiosConfig"
 
+import '../styles/transacs.css'
+
 export default function SendMoney() {
   const [accountNumber, setAccountNumber] = useState("")
   const [balance, setBalance] = useState("")
@@ -12,6 +14,8 @@ export default function SendMoney() {
         accountNumber: Number(accountNumber), 
         balance: Number(balance)
       })
+      setBalance('')
+      setAccountNumber('')
       alert(res.data)
     } catch (err) {
       alert("Transaction failed")
@@ -19,7 +23,7 @@ export default function SendMoney() {
   }
 
   return (
-    <form onSubmit={handleSend}>
+    <form onSubmit={handleSend} className="transaction-form">
       <h2>Send Money</h2>
       <input
         placeholder="Receiver Account #"

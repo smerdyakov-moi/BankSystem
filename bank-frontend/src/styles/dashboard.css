@@ -1,0 +1,9 @@
+.dashboard-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.dashboard-container h1 {
+  font-size: 2rem;
+  color: #333;
+}

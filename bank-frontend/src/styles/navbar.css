@@ -1,0 +1,30 @@
+nav {
+  background-color: #1976d2;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav button {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #c62828;
+}

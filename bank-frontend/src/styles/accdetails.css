@@ -1,0 +1,9 @@
+pre {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 1rem;
+}

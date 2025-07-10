@@ -11,6 +11,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 
+
 function App() {
   return (
     <BrowserRouter>

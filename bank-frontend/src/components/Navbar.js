@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import axios from '../api/axiosConfig'
 
+import '../styles/navbar.css'
+
 export default function Navbar() {
   const navigate = useNavigate()
 
@@ -11,7 +13,6 @@ export default function Navbar() {
 
   return (
     <nav>
-      <Link to="/dashboard">Dashboard</Link> |{" "}
       <Link to="/details">Details</Link> |{" "}
       <Link to="/history">History</Link> |{" "}
       <Link to="/send">Send</Link> |{" "}

@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 
+import '../styles/register.css'
+
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +22,7 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="register-form">
       <h2>Register</h2>
       <input
         placeholder="Name"

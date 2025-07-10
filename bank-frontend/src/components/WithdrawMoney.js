@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "../api/axiosConfig";
 
+import '../styles/transacs.css'
+
 export default function WithdrawMoney() {
   const [balance, setBalance] = useState("");
 
@@ -9,13 +11,14 @@ export default function WithdrawMoney() {
     try {
       const res = await axios.patch("/withdrawmoney", { balance });
       alert(res.data);
+      setBalance('')
     } catch (err) {
       alert("Failed to withdraw");
     }
   };
 
   return (
-    <form onSubmit={handleWithdraw}>
+    <form onSubmit={handleWithdraw} className="transaction-form">
       <h2>Withdraw</h2>
       <input
         placeholder="Amount"

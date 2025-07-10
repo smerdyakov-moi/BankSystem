@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "../api/axiosConfig";
 
+import '../styles/transacs.css'
+
 export default function DepositMoney() {
   const [balance, setBalance] = useState("");
 
@@ -9,13 +11,14 @@ export default function DepositMoney() {
     try {
       const res = await axios.patch("/depositmoney", { balance: Number(balance) });;
       alert(res.data);
+      setBalance('')
     } catch (err) {
       alert("Failed to deposit");
     }
   };
 
   return (
-    <form onSubmit={handleDeposit}>
+    <form onSubmit={handleDeposit} className="transaction-form">
       <h2>Deposit</h2>
       <input
         placeholder="Amount"

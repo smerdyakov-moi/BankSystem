@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axiosConfig";
 
+import Navbar from "./Navbar";
+import '../styles/accdetails.css'
+
 export default function AccountDetails() {
   const [details, setDetails] = useState("");
 
@@ -11,5 +14,9 @@ export default function AccountDetails() {
       .catch(() => setDetails("Failed to load details"));
   }, []);
 
-  return <pre>{details}</pre>;
+  return <>
+    <Navbar/>
+     <pre>{details}</pre>;
+     {console.log(details)}
+  </>
 }
