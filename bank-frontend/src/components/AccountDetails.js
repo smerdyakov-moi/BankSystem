@@ -1,0 +1,15 @@
+import { useEffect, useState } from "react";
+import axios from "../api/axiosConfig";
+
+export default function AccountDetails() {
+  const [details, setDetails] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("/mydetails")
+      .then((res) => setDetails(res.data))
+      .catch(() => setDetails("Failed to load details"));
+  }, []);
+
+  return <pre>{details}</pre>;
+}
