@@ -11,67 +11,69 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 
+import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+    <div className="backgroundimg">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/details"
-          element={
-            <PrivateRoute>
-              <AccountDetails />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/history"
-          element={
-            <PrivateRoute>
-              <AccountHistory />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/send"
-          element={
-            <PrivateRoute>
-              <SendMoney />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/deposit"
-          element={
-            <PrivateRoute>
-              <DepositMoney />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/withdraw"
-          element={
-            <PrivateRoute>
-              <WithdrawMoney />
-            </PrivateRoute>
-          }
-        />
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/details"
+            element={
+              <PrivateRoute>
+                <AccountDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <PrivateRoute>
+                <AccountHistory />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/send"
+            element={
+              <PrivateRoute>
+                <SendMoney />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/deposit"
+            element={
+              <PrivateRoute>
+                <DepositMoney />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/withdraw"
+            element={
+              <PrivateRoute>
+                <WithdrawMoney />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

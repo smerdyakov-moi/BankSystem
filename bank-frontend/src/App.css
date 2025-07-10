@@ -1,0 +1,23 @@
+/* src/App.css */
+.backgroundimg {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.backgroundimg::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  width: 500px;
+  height: 500px;
+  background-image: url("/logo192.png"); /* from public folder */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
