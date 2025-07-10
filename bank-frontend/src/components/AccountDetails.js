@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axiosConfig";
 
+import Footer from './Footer'
 import Navbar from "./Navbar";
 import '../styles/accdetails.css'
 
@@ -18,5 +19,6 @@ export default function AccountDetails() {
     <Navbar/>
      <pre>{details}</pre>;
      {console.log(details)}
+     <Footer/>
   </>
 }

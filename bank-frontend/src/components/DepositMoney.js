@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "../api/axiosConfig";
 
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import '../styles/transacs.css'
 
 export default function DepositMoney() {
@@ -18,6 +20,8 @@ export default function DepositMoney() {
   };
 
   return (
+    <>
+    <Navbar/>
     <form onSubmit={handleDeposit} className="transaction-form">
       <h2>Deposit</h2>
       <input
@@ -27,5 +31,7 @@ export default function DepositMoney() {
       />
       <button type="submit">Deposit</button>
     </form>
+    <Footer/>
+    </>
   );
 }

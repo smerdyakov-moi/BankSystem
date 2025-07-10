@@ -3,6 +3,9 @@ import axios from "../api/axiosConfig"
 
 import '../styles/transacs.css'
 
+import Navbar from "./Navbar"
+import Footer from './Footer'
+
 export default function SendMoney() {
   const [accountNumber, setAccountNumber] = useState("")
   const [balance, setBalance] = useState("")
@@ -23,6 +26,9 @@ export default function SendMoney() {
   }
 
   return (
+    <>
+      <Navbar/>
+      
     <form onSubmit={handleSend} className="transaction-form">
       <h2>Send Money</h2>
       <input
@@ -39,5 +45,7 @@ export default function SendMoney() {
       />
       <button type="submit">Send</button>
     </form>
+    <Footer/>
+    </>
   )
 }

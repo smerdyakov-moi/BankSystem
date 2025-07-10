@@ -2,6 +2,9 @@ import { useState } from "react";
 import axios from "../api/axiosConfig";
 
 import '../styles/transacs.css'
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+
 
 export default function WithdrawMoney() {
   const [balance, setBalance] = useState("");
@@ -18,7 +21,9 @@ export default function WithdrawMoney() {
   };
 
   return (
-    <form onSubmit={handleWithdraw} className="transaction-form">
+    <>
+      <Navbar/>
+      <form onSubmit={handleWithdraw} className="transaction-form">
       <h2>Withdraw</h2>
       <input
         placeholder="Amount"
@@ -27,5 +32,7 @@ export default function WithdrawMoney() {
       />
       <button type="submit">Withdraw</button>
     </form>
+    <Footer/>
+    </>
   );
 }

@@ -8,7 +8,7 @@ export default function Navbar() {
 
   const logout = async () => {
     await axios.get('/logout')
-    navigate('/login')
+    navigate('/')
   }
 
   return (

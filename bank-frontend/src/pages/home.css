@@ -1,0 +1,37 @@
+.home-container {
+  text-align: center;
+  margin-top: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home-container h1 {
+  font-size: 48px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.home-container p {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.home-container a {
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.home-container button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-container button:hover {
+  background-color: #2980b9;
+}

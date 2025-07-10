@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axiosConfig";
 import Navbar from "./Navbar";
-import '../styles/accdetails.css'
+import "../styles/accdetails.css";
+import Footer from "./Footer";
 
 export default function AccountHistory() {
   const [history, setHistory] = useState("");
@@ -13,8 +14,11 @@ export default function AccountHistory() {
       .catch(() => setHistory("Failed to load history"));
   }, []);
 
-  return <>
-    <Navbar/>
-     <pre>{history}</pre>
-    </>;
+  return (
+    <>
+      <Navbar />
+      <pre>{history}</pre>
+      <Footer />
+    </>
+  );
 }
