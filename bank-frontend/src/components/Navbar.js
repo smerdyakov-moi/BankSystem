@@ -1,24 +1,22 @@
-import { Link, useNavigate } from 'react-router-dom'
-import axios from '../api/axiosConfig'
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../api/axiosConfig";
 
-import '../styles/navbar.css'
+import "../styles/navbar.css";
 
 export default function Navbar() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const logout = async () => {
-    await axios.get('/logout')
-    navigate('/')
-  }
+    await axios.get("/logout");
+    navigate("/");
+  };
 
   return (
     <nav>
-      <Link to="/details">Details</Link> |{" "}
-      <Link to="/history">History</Link> |{" "}
-      <Link to="/send">Send</Link> |{" "}
-      <Link to="/deposit">Deposit</Link> |{" "}
+      <Link to="/details">Details</Link> | <Link to="/history">History</Link> |{" "}
+      <Link to="/send">Send</Link> | <Link to="/deposit">Deposit</Link> |{" "}
       <Link to="/withdraw">Withdraw</Link> |{" "}
       <button onClick={logout}>Logout</button>
     </nav>
-  )
+  );
 }

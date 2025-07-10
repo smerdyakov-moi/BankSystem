@@ -3,7 +3,7 @@ import axios from "../api/axiosConfig";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import '../styles/transacs.css'
+import "../styles/transacs.css";
 
 export default function DepositMoney() {
   const [balance, setBalance] = useState("");
@@ -11,9 +11,11 @@ export default function DepositMoney() {
   const handleDeposit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.patch("/depositmoney", { balance: Number(balance) });;
+      const res = await axios.patch("/depositmoney", {
+        balance: Number(balance),
+      });
       alert(res.data);
-      setBalance('')
+      setBalance("");
     } catch (err) {
       alert("Failed to deposit");
     }
@@ -21,17 +23,17 @@ export default function DepositMoney() {
 
   return (
     <>
-    <Navbar/>
-    <form onSubmit={handleDeposit} className="transaction-form">
-      <h2>Deposit</h2>
-      <input
-        placeholder="Amount"
-        value={balance}
-        onChange={(e) => setBalance(e.target.value)}
-      />
-      <button type="submit">Deposit</button>
-    </form>
-    <Footer/>
+      <Navbar />
+      <form onSubmit={handleDeposit} className="transaction-form">
+        <h2>Deposit</h2>
+        <input
+          placeholder="Amount"
+          value={balance}
+          onChange={(e) => setBalance(e.target.value)}
+        />
+        <button type="submit">Deposit</button>
+      </form>
+      <Footer />
     </>
   );
 }

@@ -1,6 +1,5 @@
-import Navbar from './Navbar'
-import Footer from './Footer'
-
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function Dashboard() {
   return (
@@ -8,5 +7,5 @@ export default function Dashboard() {
       <Navbar />
       <Footer />
     </>
-  )
+  );
 }
