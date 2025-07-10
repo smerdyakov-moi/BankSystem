@@ -1,4 +1,4 @@
-Backend Bank System which allows:
+Backend + Frontend Bank System which allows:
 
 Usual user and admin login+logouts (No extra credentials)
 
@@ -23,6 +23,10 @@ Only one supra-admin
 See existing Users
 
 Only Supra admin has the privilige to add or remove admin forever
+
+Host and view
+
+axios
 
 Protections:
 
