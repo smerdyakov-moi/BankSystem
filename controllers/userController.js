@@ -90,32 +90,51 @@ const accHistory = async (req, res) => {
 };
 
 const closeAcc = async (req, res) => {
-  const deleted_user = await userModel.findOneAndDelete({
-    email: req.user.email,
-  });
-  const {
-    name,
-    email,
-    password,
-    accountNumber,
-    balance,
-    moneysent,
-    moneyreceived,
-    _id,
-  } = deleted_user;
-  await deletedUser.create({
-    _id,
-    name,
-    email,
-    password,
-    accountNumber,
-    balance,
-    moneysent,
-    moneyreceived,
-  });
-  res.clearCookie('token', { httpOnly: true, secure: false }).json('User logged out successfully');
-  res.send("The account has been closed");
+  try {
+    const { password } = req.body;
+    if (!password) return res.status(400).json({ message: "Password required" });
+
+    const user = await userModel.findOne({ email: req.user.email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: "Incorrect password" });
+
+    const deleted_user = await userModel.findOneAndDelete({ email: req.user.email });
+    if (!deleted_user) {
+      return res.status(404).json({ message: "User not found or already deleted" });
+    }
+
+    const {
+      name,
+      email,
+      password: hashedPassword,
+      accountNumber,
+      balance,
+      moneysent,
+      moneyreceived,
+      _id,
+    } = deleted_user;
+
+    await deletedUser.create({
+      _id,
+      name,
+      email,
+      password: hashedPassword,
+      accountNumber,
+      balance,
+      moneysent,
+      moneyreceived,
+    });
+
+    res.clearCookie("token", { httpOnly: true, secure: false });
+    res.status(200).json({ message: "Account successfully deleted" });
+  } catch (err) {
+    console.error("Error in closeAcc:", err);
+    res.status(500).json({ message: "Server error" });
+  }
 };
+
 
 const recoverAcc = async (req, res) => {
   const { email, password } = req.body;

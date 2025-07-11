@@ -12,9 +12,24 @@ export default function Navbar() {
   };
 
   const deleteAcc = async () => {
-    await axios.delete("/closeacc");
-    alert("Sorry to see you go :/");
-    navigate("/");
+    console.log('Called')
+    const pw = prompt("Enter your password to delete your account:");
+    if (!pw) return
+
+    try {
+      const response = await axios.delete("/closeacc", {
+        data: { password: pw },withCredentials:true,
+      });
+
+      if (response.status === 200) {
+        alert("Sorry to see you go :/");
+        navigate("/");
+      }
+    } catch (error) {
+      alert(
+        error.response?.data?.message || "Failed to delete account. Try again."
+      );
+    }
   };
 
   return (

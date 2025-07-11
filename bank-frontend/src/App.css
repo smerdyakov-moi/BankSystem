@@ -13,7 +13,7 @@
   transform: translate(-50%, -70%);
   width: 500px;
   height: 500px;
-  background-image: url("/logo192.png"); /* from public folder */
+  background-image: url("../assets/favicon_io/android-chrome-512x512.png"); /* from public folder */
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.2;
