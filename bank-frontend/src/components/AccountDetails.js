@@ -18,7 +18,7 @@ export default function AccountDetails() {
   return (
     <>
       <Navbar />
-      <pre>{details}</pre>;{console.log(details)}
+      <pre>{details}</pre>
       <Footer />
     </>
   );

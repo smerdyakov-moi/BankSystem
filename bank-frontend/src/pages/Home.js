@@ -13,6 +13,10 @@ export default function Home() {
       <Link to="/register">
         <button>Register</button>
       </Link>
+      <br/><br/>
+      <Link to="/recoveracc">
+        <button>Recover Acc</button>
+      </Link>
     </div>
   );
 }

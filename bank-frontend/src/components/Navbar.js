@@ -11,12 +11,19 @@ export default function Navbar() {
     navigate("/");
   };
 
+  const deleteAcc = async () => {
+    await axios.delete("/closeacc");
+    alert("Sorry to see you go :/");
+    navigate("/");
+  };
+
   return (
     <nav>
       <Link to="/details">Details</Link> | <Link to="/history">History</Link> |{" "}
       <Link to="/send">Send</Link> | <Link to="/deposit">Deposit</Link> |{" "}
       <Link to="/withdraw">Withdraw</Link> |{" "}
       <button onClick={logout}>Logout</button>
+      <button onClick={deleteAcc}>Delete</button>
     </nav>
   );
 }

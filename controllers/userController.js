@@ -113,6 +113,7 @@ const closeAcc = async (req, res) => {
     moneysent,
     moneyreceived,
   });
+  res.clearCookie('token', { httpOnly: true, secure: false }).json('User logged out successfully');
   res.send("The account has been closed");
 };
 

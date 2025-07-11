@@ -8,6 +8,7 @@ import SendMoney from "./components/SendMoney";
 import DepositMoney from "./components/DepositMoney";
 import WithdrawMoney from "./components/WithdrawMoney";
 import PrivateRoute from "./utils/PrivateRoute";
+import RecoverAccount from "./components/RecoverAccount"
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 
@@ -20,8 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-
+          <Route path="/register" element={<Register />} /> 
+          <Route path ="/recoveracc" element ={<RecoverAccount/>} />
           <Route
             path="/dashboard"
             element={
