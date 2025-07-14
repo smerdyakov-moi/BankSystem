@@ -12,7 +12,6 @@ export default function Login() {
   e.preventDefault()
   try {
     const res = await axios.post('/login', { email, password })
-    console.log("LOGIN SUCCESS:", res)
     alert('Login successful')
     navigate('/dashboard')
   } catch (err) {
