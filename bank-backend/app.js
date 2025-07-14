@@ -5,6 +5,8 @@ const adminModel = require ('./models/adminModel')
 const cors = require('cors')
 const app = express()
 
+const port = process.env.PORT || 3000
+
 app.use(cors({ origin: 'http://localhost:3001', credentials: true }))
 app.use(cookieParser());
 app.use(express.json())
@@ -20,4 +22,4 @@ app.use('/',userRoutes)
 
 
 
-app.listen('3000',()=>{console.log("Listening on port 3000!!")})
+app.listen(port,()=>{console.log(`Listening on port ${port}!!`)})
