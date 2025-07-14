@@ -29,23 +29,25 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  const {email,password} = req.body
-  const user = await userModel.findOne({ email })
-  if (!user) return res.status(400).send('No user with such email')
+  const { email, password } = req.body;
+  const user = await userModel.findOne({ email });
+  if (!user) return res.status(400).send('No user with such email');
 
   const result = await bcrypt.compare(password, user.password);
   if (result) {
-    const token = generateUserToken({ email, userid: user._id })
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000, secure: false, sameSite: 'strict' })
-      .json('User logged in successfully')
+    const token = generateUserToken({ email, userid: user._id });
+    res.cookie('token', token, {
+      httpOnly: true, maxAge: 3600000, secure: true, sameSite: 'none'
+    });
+    res.json('User logged in successfully');
   } else {
-    res.status(400).send('Incorrect credentials')
+    res.status(400).send('Incorrect credentials');
   }
 };
 
-const logoutUser = (req, res) => {
-  res.clearCookie('token', { httpOnly: true, secure: false }).json('User logged out successfully');
-};
+
+const logoutUser = (req, res) => res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'none' }).json('User logged out successfully');
+
 
 const createAdmin = async (req, res) => {
   const {email, password } = req.body;
