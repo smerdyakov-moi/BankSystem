@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const mongoose = require("mongoose");
 const dbgr = require("debug")("development:mongoose");
 
